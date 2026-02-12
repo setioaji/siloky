@@ -1,0 +1,13 @@
+services:
+  asiloky_appp:
+    build: .
+    container_name: siloky_app
+    ports:
+      - "8080:80" # Akses di browser via localhost:8080
+    volumes:
+      # Mounting folder saat ini ke container agar data.sqlite tersimpan di host
+      # (Opsional: gunakan ini untuk development agar perubahan kode langsung terlihat)
+      - .:/var/www/html
+    environment:
+      - TZ=Asia/Jakarta # Set zona waktu agar tanggal masuk/bayar sesuai WIB
+    restart: unless-stopped
